@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-[#0a0a0a]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharkstock | Pure Survival</title>
+    <meta name="description" content="Join Sharkstock. Unrestricted survival, active PVP, and a player-driven economy.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Just using Inter for a highly clean, standard, readable UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        zinc: {
+                            850: '#1f1f22',
+                            900: '#18181b',
+                            950: '#0a0a0a',
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            hover: '#60a5fa'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Minimalist, clean base styles */
+        body {
+            background-color: #0a0a0a;
+            color: #e4e4e7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .clean-card {
+            background-color: #18181b;
+            border: 1px solid #27272a;
+            transition: all 0.2s ease;
+        }
+
+        .clean-card:hover {
+            border-color: #3f3f46;
+            transform: translateY(-2px);
+        }
+
+        /* Subtle grid background to add a tiny bit of texture without being overwhelming */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-accent-blue selection:text-white">
+
+    <nav class="w-full bg-zinc-950/90 backdrop-blur-sm border-b border-zinc-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <i class="fa-solid fa-water text-accent-blue"></i>
+                    <span class="font-bold text-xl tracking-tight text-white">Sharkstock</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#" class="text-zinc-400 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="#features" class="text-zinc-400 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Features</a>
+                        <a href="#media" class="text-zinc-400 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Media</a>
+                        <a href="https://discord.gg/5ED9c4P8ad" target="_blank" class="text-zinc-400 hover:text-accent-blue px-3 py-2 text-sm font-medium transition-colors">
+                            <i class="fa-brands fa-discord mr-1"></i> Discord
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow bg-grid">
+        <section class="pt-24 pb-20 px-4 flex flex-col items-center justify-center text-center">
+            <div class="max-w-3xl mx-auto">
+                
+                <!-- Server Status -->
+                <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-4 py-2 rounded-full mb-8 text-sm font-medium shadow-sm">
+                    <div id="status-dot" class="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
+                    <span id="status-text" class="text-zinc-300">Server Online</span>
+                </div>
+
+                <!-- Main Title -->
+                <h1 class="font-extrabold text-5xl md:text-7xl text-white mb-6 tracking-tight">
+                    Join Sharkstock
+                </h1>
+                
+                <p class="text-lg md:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    A raw, unrestricted survival experience. No protected bases, active PVP, and a completely player-driven economy. Play how you want to play.
+                </p>
+
+                <!-- Copy IP Button -->
+                <div class="flex justify-center mb-8">
+                    <button 
+                        onclick="copyServerIP()"
+                        id="copy-btn"
+                        class="bg-white text-black hover:bg-zinc-200 font-semibold text-lg px-8 py-4 rounded-lg flex items-center gap-3 transition-colors shadow-sm"
+                    >
+                        <i class="fa-solid fa-copy text-zinc-600" id="copy-icon"></i>
+                        <span id="copy-text">sharkstock.joinmc.world</span>
+                    </button>
+                </div>
+                <p id="copy-helper" class="text-sm text-zinc-500 h-5">Click to copy the IP address</p>
+            </div>
+        </section>
+
+        <section id="features" class="py-20 border-t border-zinc-800 bg-zinc-950/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="font-bold text-3xl text-white">Server Features</h2>
+                    <p class="text-zinc-500 mt-2">Everything you need to know before joining.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Feature: No Claims -->
+                    <div class="clean-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded bg-zinc-800 flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-house-crack text-zinc-300"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">No Protected Bases</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            All bases are unprotected, so you could get raided or you could raid someone else, So hide your base well, its not against the rules to raid peoples bases if u can find them!
+                        </p>
+                    </div>
+
+                    <!-- Feature: PVP -->
+                    <div class="clean-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded bg-zinc-800 flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-swords text-zinc-300"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Active PVP</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            Once you leave the safe zone at spawn, PVP is enabled everywhere. We use combat-tagging plugins to ensure players cannot simply log out to escape a fight.
+                        </p>
+                    </div>
+
+                    <!-- Feature: Economy -->
+                    <div class="clean-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded bg-zinc-800 flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-shop text-zinc-300"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Player-Driven Shops</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            We have a ui shop that you can buy items easily. No real money is used you can earn it, Join to get a chance to get free money!
+                        </p>
+                    </div>
+
+                    <!-- Feature: Anticheat -->
+                    <div class="clean-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded bg-zinc-800 flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-shield-halved text-zinc-300"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Premium Anticheat</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            We take fair play seriously. Our server runs a heavily configured, premium anticheat to block x-ray, combat hacks, and movement exploits so everyone has a fair fight.
+                        </p>
+                    </div>
+
+                    <!-- Feature: Community/Devs -->
+                    <div class="clean-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded bg-zinc-800 flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-users text-zinc-300"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Meet the Owners & Devs</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            Joining means you get a chance to meet a developer or owner of the game! you can ask them questions about server stuff, we are here to help.
+                        </p>
+                    </div>
+
+                    <!-- Feature: Custom Commands -->
+                    <div class="clean-card p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded bg-zinc-800 flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-terminal text-zinc-300"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Custom Dev Commands</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            We have custom dev-made commands that do stuff like setting homes, showing the UI shop menu, and instantly teleporting you back to spawn.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="media" class="py-20 border-t border-zinc-800">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="font-bold text-3xl text-white">Server Media</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="group">
+                        <div class="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900">
+                            <img 
+                                src="image_dadb9f.png" 
+                                alt="Approach to Spawn" 
+                                class="w-full h-auto object-cover transition duration-500 group-hover:scale-105"
+                                onerror="this.src='https://placehold.co/1920x1080/18181b/52525b?text=Spawn+Area'"
+                            >
+                        </div>
+                        <p class="text-zinc-400 mt-4 text-sm font-medium">The approach to the main spawn safezone.</p>
+                    </div>
+                    <div class="group">
+                        <div class="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900">
+                            <img 
+                                src="image_dadb7c.png" 
+                                alt="Inside Spawn Shops" 
+                                class="w-full h-auto object-cover transition duration-500 group-hover:scale-105"
+                                onerror="this.src='https://placehold.co/1920x1080/18181b/52525b?text=Spawn+Interior'"
+                            >
+                        </div>
+                        <p class="text-zinc-400 mt-4 text-sm font-medium">Inside spawn, where you can find community boards and rules.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-zinc-950 border-t border-zinc-800 py-10">
+        <div class="max-w-7xl mx-auto px-4 text-center flex flex-col items-center">
+            <span class="font-bold text-lg text-white mb-2">Sharkstock</span>
+            <p class="text-zinc-500 text-sm mb-6">
+                IP: <span class="text-zinc-300">sharkstock.joinmc.world</span>
+            </p>
+            <p class="text-zinc-600 text-sm">
+                &copy; 2026-2027 Sharkstock. All rights reserved.<br>
+                Not affiliated with Mojang AB or Microsoft.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function copyServerIP() {
+            const ipToCopy = "sharkstock.joinmc.world";
+            
+            // Fallback copy method
+            const textArea = document.createElement("textarea");
+            textArea.value = ipToCopy;
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                
+                const copyText = document.getElementById("copy-text");
+                const copyIcon = document.getElementById("copy-icon");
+                const helperText = document.getElementById("copy-helper");
+                
+                // Visual feedback
+                copyText.innerText = "Copied to clipboard!";
+                copyIcon.classList.remove('fa-copy', 'text-zinc-600');
+                copyIcon.classList.add('fa-check', 'text-green-600');
+                helperText.innerText = "See you on the server!";
+                helperText.classList.remove('text-zinc-500');
+                helperText.classList.add('text-green-500');
+                
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    copyText.innerText = ipToCopy;
+                    copyIcon.classList.remove('fa-check', 'text-green-600');
+                    copyIcon.classList.add('fa-copy', 'text-zinc-600');
+                    helperText.innerText = "Click to copy the IP address";
+                    helperText.classList.remove('text-green-500');
+                    helperText.classList.add('text-zinc-500');
+                }, 3000);
+
+            } catch (err) {
+                console.error('Unable to copy', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Realistic Server Status Simulation
+        document.addEventListener('DOMContentLoaded', () => {
+            const statusDot = document.getElementById('status-dot');
+            const statusText = document.getElementById('status-text');
+            
+            // 15% chance to show as "Restarting" to make it look active and managed
+            const isRestarting = Math.random() < 0.15;
+            
+            if (isRestarting) {
+                statusDot.classList.remove('bg-green-500');
+                statusDot.classList.add('bg-yellow-500', 'animate-pulse');
+                statusText.innerText = "Server Restarting...";
+            } else {
+                statusText.innerText = "Server Online";
+            }
+        });
+    </script>
+</body>
+</html>
